@@ -144,5 +144,5 @@ void ABombermanCharacter::PlaceBomb()
 
 	FActorSpawnParameters SpawnParameters;
 
-	GetWorld()->SpawnActor<ABomb>(BombClass, GetActorLocation(), GetActorRotation(), SpawnParameters);
+	GetWorld()->SpawnActor<ABomb>(BombClass, GetActorLocation() + 50 * GetActorTransform().GetRotation().GetForwardVector(), GetActorRotation(), SpawnParameters);
 }

@@ -25,11 +25,14 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	float ExplosionRadius;
 
-	UPROPERTY(EditAnywhere,Category = "Setup")
-	class UStaticMesh* BombMesh;
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite,Category = "Setup")
+	class UStaticMeshComponent* BombMesh;
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	float DamageBase;
+
+	UPROPERTY(VisibleAnywhere, Category = "Setup")
+	class UParticleSystemComponent* ExplosionParticle;
 
 private:
 	float SpawnTime;

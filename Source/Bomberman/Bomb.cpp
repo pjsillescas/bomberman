@@ -2,8 +2,10 @@
 
 #include "Bomb.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
-#include "Runtime/Engine/Classes/Engine/StaticMesh.h"
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
+#include "Runtime/Engine/Classes/Particles/ParticleSystemComponent.h"
+#include "Components/StaticMeshComponent.h"
+
 #include "DamageComponent.h"
 
 // Sets default values
@@ -16,9 +18,13 @@ ABomb::ABomb()
 	ExplosionRadius = 40;
 	DamageBase = 20;
 
-	BombMesh = CreateDefaultSubobject<UStaticMesh>(FName("BombMesh"));
+	BombMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("BombMesh"));
+	SetRootComponent(BombMesh);
 
 	DamageComponent = CreateDefaultSubobject<UDamageComponent>(FName("DamageComponent"));
+	ExplosionParticle = CreateDefaultSubobject<UParticleSystemComponent>(FName("ExplosionParticle"));
+//	ExplosionParticle->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	ExplosionParticle->bAutoActivate = false;
 }
 
 // Called when the game starts or when spawned
@@ -51,6 +57,8 @@ void ABomb::EndPlay(const EEndPlayReason::Type EndPlayReason)
 void ABomb::Explode()
 {
 	UE_LOG(LogTemp,Warning,TEXT("Bomb destroyed!!"));
+
+	ExplosionParticle->Activate();
 	TArray<AActor*> OutActors;
 	TArray<AActor*> ActorsToIgnore;
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
