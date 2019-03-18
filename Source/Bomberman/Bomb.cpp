@@ -23,8 +23,9 @@ ABomb::ABomb()
 
 	DamageComponent = CreateDefaultSubobject<UDamageComponent>(FName("DamageComponent"));
 	ExplosionParticle = CreateDefaultSubobject<UParticleSystemComponent>(FName("ExplosionParticle"));
-//	ExplosionParticle->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-	ExplosionParticle->bAutoActivate = false;
+	//ExplosionParticle->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	ExplosionParticle->bAutoActivate = true;
+	ExplosionParticle->SetActive(true);
 }
 
 // Called when the game starts or when spawned
@@ -57,8 +58,16 @@ void ABomb::EndPlay(const EEndPlayReason::Type EndPlayReason)
 void ABomb::Explode()
 {
 	UE_LOG(LogTemp,Warning,TEXT("Bomb destroyed!!"));
-
+	
+//	BombMesh->SetVisibility(true);
 	ExplosionParticle->Activate();
+
+	for (auto Component : GetComponentsByClass(UParticleSystemComponent::StaticClass()))
+	{
+		UE_LOG(LogTemp,Warning,TEXT("Activating %s"),*(Component->GetName()));
+		Component->Activate();
+	}
+
 	TArray<AActor*> OutActors;
 	TArray<AActor*> ActorsToIgnore;
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
