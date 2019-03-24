@@ -29,6 +29,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Damage")
+	class UDamageComponent* DamageComponent;
+
 protected:
 
 	/** Resets HMD orientation in VR. */
