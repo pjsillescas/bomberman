@@ -12,6 +12,7 @@ UDamageComponent::UDamageComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	MaxHealthPoints = 30;
+	HealthPoints = MaxHealthPoints;
 	// ...
 }
 
@@ -37,7 +38,10 @@ void UDamageComponent::ApplyDamage(float Damage)
 		AActor* Owner = GetOwner();
 		UE_LOG(LogTemp,Warning,TEXT("DamageComponent: Destroying Actor %s"),*(Owner->GetName()));
 
-		GetOwner()->Destroy();
+		if (OnDestroy.IsBound())
+			OnDestroy.Execute();
+
+		//GetOwner()->Destroy();
 	}
 }
 

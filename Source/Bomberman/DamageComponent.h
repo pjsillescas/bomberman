@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "DamageComponent.generated.h"
 
+DECLARE_DYNAMIC_DELEGATE(FOnDestroy);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BOMBERMAN_API UDamageComponent : public UActorComponent
@@ -24,6 +25,8 @@ protected:
 	int32 MaxHealthPoints;
 
 	int32 HealthPoints;
+
+	FOnDestroy OnDestroy;
 	
 public:	
 	// Called every frame
@@ -31,5 +34,11 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Damage")
 	virtual void ApplyDamage(float Damage);
+
+	UFUNCTION(BlueprintCallable,Category = "Setup")
+	int32 GetHealthPoints() const { return HealthPoints; }
+
+	UFUNCTION(BlueprintCallable,Category = "Setup")
+	void SetOnDestroy(const FOnDestroy& NewOnDestroy) { OnDestroy = NewOnDestroy; }
 
 };

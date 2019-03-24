@@ -29,6 +29,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Damage")
 	class UDamageComponent* DamageComponent;
 

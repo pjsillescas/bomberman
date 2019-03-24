@@ -43,7 +43,8 @@ private:
 
 	virtual float GetDamage(class AActor* Actor);
 
-	UPROPERTY(VisibleAnywhere,Category = "Setup")
+protected:
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category = "Setup")
 	class UDamageComponent* DamageComponent;
 public:	
 	// Called every frame
