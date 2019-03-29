@@ -12,4 +12,21 @@ ABombermanGameMode::ABombermanGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+	Lives = 3;
+}
+
+
+void ABombermanGameMode::TakeLife()
+{
+	Lives--;
+
+	if (Lives <= 0)
+	{
+		//RestartPlayerAtPlayerStart(getplayerpa);
+	}
+	else
+	{
+		;
+	}
 }
