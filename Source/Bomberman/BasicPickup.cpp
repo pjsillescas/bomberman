@@ -34,8 +34,17 @@ void ABasicPickup::Tick(float DeltaTime)
 
 bool ABasicPickup::IsPlayer(AActor* Actor) const
 {
+	bool bIsPlayer = false;
+	
 	APawn* Pawn = Cast<APawn>(Actor);
-	return (Pawn != nullptr) && Pawn->GetController()->IsPlayerController();
+	if (Pawn != nullptr)
+	{
+		AController* Controller = Pawn->GetController();
+		if (Controller != nullptr)
+			bIsPlayer = Controller->IsPlayerController();
+	}
+	
+	return bIsPlayer;
 }
 
 void ABasicPickup::OnPickupBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

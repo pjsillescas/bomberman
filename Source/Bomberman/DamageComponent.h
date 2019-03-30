@@ -42,4 +42,6 @@ public:
 	UFUNCTION(BlueprintCallable,Category = "Setup")
 	void SetOnDestroy(const FOnDestroy& NewOnDestroy) { OnDestroy = NewOnDestroy; }
 
+	UFUNCTION(BlueprintCallable,Category = "Status")
+	bool GetIsDead() const { return IsDead; }
 };

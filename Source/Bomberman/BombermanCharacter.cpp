@@ -149,3 +149,8 @@ void ABombermanCharacter::PlaceBomb()
 
 	GetWorld()->SpawnActor<ABomb>(BombClass, GetActorLocation() + 50 * GetActorTransform().GetRotation().GetForwardVector(), GetActorRotation(), SpawnParameters);
 }
+
+bool ABombermanCharacter::IsDead() const
+{
+	return DamageComponent->GetIsDead();
+}

@@ -29,6 +29,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Status")
+	bool IsDead() const;
+
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Damage")
 	class UDamageComponent* DamageComponent;
