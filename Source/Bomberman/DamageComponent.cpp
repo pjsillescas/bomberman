@@ -23,7 +23,7 @@ void UDamageComponent::BeginPlay()
 	Super::BeginPlay();
 
 	HealthPoints = MaxHealthPoints;
-
+	IsDead = false;
 	// ...
 	
 }
@@ -33,8 +33,10 @@ void UDamageComponent::ApplyDamage(float Damage)
 	HealthPoints -= Damage;
 	UE_LOG(LogTemp, Warning, TEXT("Applying damage of %f resulting in health of %i"), Damage,HealthPoints);
 
-	if (HealthPoints <= 0)
+	if (HealthPoints <= 0 && !IsDead)
 	{
+		IsDead = true;
+
 		AActor* Owner = GetOwner();
 		UE_LOG(LogTemp,Warning,TEXT("DamageComponent: Destroying Actor %s"),*(Owner->GetName()));
 

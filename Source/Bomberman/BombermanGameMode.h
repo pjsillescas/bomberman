@@ -18,12 +18,6 @@ protected:
 
 public:
 	ABombermanGameMode();
-
-	UFUNCTION(BlueprintCallable,BlueprintPure,Category = "Setup")
-	int32 GetLives() const { return Lives; }
-
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void TakeLife();
 };
 
 

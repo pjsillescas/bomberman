@@ -27,6 +27,7 @@ protected:
 	int32 HealthPoints;
 
 	FOnDestroy OnDestroy;
+	bool IsDead;
 	
 public:	
 	// Called every frame

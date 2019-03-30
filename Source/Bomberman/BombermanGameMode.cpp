@@ -3,6 +3,8 @@
 #include "BombermanGameMode.h"
 #include "BombermanCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Runtime/Engine/Classes/Engine/World.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 ABombermanGameMode::ABombermanGameMode()
 {
@@ -12,21 +14,6 @@ ABombermanGameMode::ABombermanGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
-
-	Lives = 3;
 }
 
 
-void ABombermanGameMode::TakeLife()
-{
-	Lives--;
-
-	if (Lives <= 0)
-	{
-		//RestartPlayerAtPlayerStart(getplayerpa);
-	}
-	else
-	{
-		;
-	}
-}
