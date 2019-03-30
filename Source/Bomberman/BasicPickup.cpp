@@ -41,11 +41,16 @@ bool ABasicPickup::IsPlayer(AActor* Actor) const
 void ABasicPickup::OnPickupBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	UE_LOG(LogTemp,Warning,TEXT("Overlapping"));
-
 	if (IsPlayer(OtherActor))
 	{
-		Cast<UBombermanGameInstance>(GetGameInstance())->AddLives(1);
+		//Cast<UBombermanGameInstance>(GetGameInstance())->AddLives(1);
+		DoPickupEffect(OtherActor);
 
 		Destroy();
 	}
+}
+
+void ABasicPickup::DoPickupEffect_Implementation(AActor* Actor)
+{
+	;
 }
