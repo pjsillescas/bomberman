@@ -25,7 +25,7 @@ void UBombermanGameInstance::TakeLife()
 		FString ThisLevel = GetWorld()->GetMapName();
 		UE_LOG(LogTemp, Warning, TEXT("Restarting level '%s'"), *ThisLevel);
 		//UGameplayStatics::OpenLevel(GetWorld(), *ThisLevel);
-		UGameplayStatics::OpenLevel(GetWorld(), TEXT("/Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap"), TRAVEL_Absolute);
+		UGameplayStatics::OpenLevel(GetWorld(), TEXT("/Game/Levels/ThirdPersonExampleMap"), TRAVEL_Absolute);
 	}
 }
 
