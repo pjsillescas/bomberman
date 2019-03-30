@@ -14,8 +14,12 @@ class BOMBERMAN_API UBombermanGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 public:
+	const int32 MAX_LIVES = 100;
+
 	UBombermanGameInstance();
 
+	UFUNCTION(BlueprintCallable, Category = "Lives")
+	int32 AddLives(int32 NumLives);
 protected:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category = "Setup")
 	int32 Lives;

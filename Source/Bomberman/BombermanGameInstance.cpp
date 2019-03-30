@@ -28,3 +28,12 @@ void UBombermanGameInstance::TakeLife()
 		UGameplayStatics::OpenLevel(GetWorld(), TEXT("/Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap"), TRAVEL_Absolute);
 	}
 }
+
+int32 UBombermanGameInstance::AddLives(int32 NumLives)
+{
+	UE_LOG(LogTemp,Warning,TEXT("Adding %i lives..."),NumLives);
+
+	Lives = FMath::Clamp<int32>(Lives + NumLives, 0, MAX_LIVES);
+
+	return Lives;
+}
