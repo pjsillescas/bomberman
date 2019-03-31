@@ -50,6 +50,8 @@ ABombermanCharacter::ABombermanCharacter()
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 
 	DamageComponent = CreateDefaultSubobject<UDamageComponent>(FName("DamageComponent"));
+
+	DefaultMaxBombs = DEFAULT_MAXBOMBS;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -145,12 +147,29 @@ void ABombermanCharacter::PlaceBomb()
 {
 	UE_LOG(LogTemp,Warning,TEXT("Placing bomb"));
 
-	FActorSpawnParameters SpawnParameters;
+	if (CurrentBombs > 0)
+	{
+		FActorSpawnParameters SpawnParameters;
+		ABomb* Bomb = GetWorld()->SpawnActor<ABomb>(BombClass, GetActorLocation() + 50 * GetActorTransform().GetRotation().GetForwardVector(), GetActorRotation(), SpawnParameters);
+		Bomb->SetBombermanOwner(this);
+		CurrentBombs--;
+	}
+}
 
-	GetWorld()->SpawnActor<ABomb>(BombClass, GetActorLocation() + 50 * GetActorTransform().GetRotation().GetForwardVector(), GetActorRotation(), SpawnParameters);
+void ABombermanCharacter::AddBomb()
+{
+	CurrentBombs = FMath::Clamp<int32>(CurrentBombs + 1, 0, MaxBombs);
 }
 
 bool ABombermanCharacter::IsDead() const
 {
 	return DamageComponent->GetIsDead();
+}
+
+void ABombermanCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	MaxBombs = DefaultMaxBombs;
+	CurrentBombs = MaxBombs;
 }

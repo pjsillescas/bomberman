@@ -11,6 +11,7 @@ class ABombermanCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+	const int32 DEFAULT_MAXBOMBS = 1;
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
@@ -32,11 +33,23 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Status")
 	bool IsDead() const;
 
-public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 DefaultMaxBombs;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 MaxBombs;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 CurrentBombs;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Damage")
 	class UDamageComponent* DamageComponent;
 
+	UFUNCTION(BlueprintCallable, Category = "Damage")
+	void AddBomb();
+
 protected:
+	void BeginPlay() override;
 
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();

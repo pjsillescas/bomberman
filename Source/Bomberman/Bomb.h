@@ -15,6 +15,7 @@ public:
 	// Sets default values for this actor's properties
 	ABomb();
 
+	void SetBombermanOwner(class ABombermanCharacter* NewBombermanOwner);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -35,6 +36,8 @@ protected:
 	class UParticleSystemComponent* ExplosionParticle;
 
 private:
+	class ABombermanCharacter* BombermanOwner;
+	
 	float SpawnTime;
 
 	virtual void Explode();

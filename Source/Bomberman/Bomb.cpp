@@ -7,6 +7,7 @@
 #include "Components/StaticMeshComponent.h"
 
 #include "DamageComponent.h"
+#include "BombermanCharacter.h"
 
 // Sets default values
 ABomb::ABomb()
@@ -85,6 +86,11 @@ void ABomb::Explode()
 			DamageComponent->ApplyDamage(Damage);
 		}
 	}
+
+	if (BombermanOwner != nullptr)
+	{
+		BombermanOwner->AddBomb();
+	}
 }
 
 float ABomb::GetDamage(AActor* Actor)
@@ -118,4 +124,9 @@ void ABomb::SetExplosionRadius(float NewExplosionRadius)
 void ABomb::SetTimeToExplosion(float NewTimeToExplosion)
 {
 	TimeToExplosion = NewTimeToExplosion;
+}
+
+void ABomb::SetBombermanOwner(class ABombermanCharacter* NewBombermanOwner)
+{
+	BombermanOwner = NewBombermanOwner;
 }
