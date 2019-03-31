@@ -161,6 +161,13 @@ void ABombermanCharacter::AddBomb()
 	CurrentBombs = FMath::Clamp<int32>(CurrentBombs + 1, 0, MaxBombs);
 }
 
+void ABombermanCharacter::IncreaseMaxBombs()
+{
+	MaxBombs++;
+	CurrentBombs++;
+}
+
+
 bool ABombermanCharacter::IsDead() const
 {
 	return DamageComponent->GetIsDead();

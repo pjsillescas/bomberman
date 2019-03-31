@@ -48,6 +48,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Damage")
 	void AddBomb();
 
+	UFUNCTION(BlueprintCallable,Category = "Status")
+	void IncreaseMaxBombs();
+
 protected:
 	void BeginPlay() override;
 
