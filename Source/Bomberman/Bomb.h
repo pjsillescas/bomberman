@@ -35,7 +35,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Setup")
 	class UParticleSystemComponent* ExplosionParticle;
 
-private:
 	class ABombermanCharacter* BombermanOwner;
 	
 	float SpawnTime;
@@ -46,7 +45,6 @@ private:
 
 	virtual float GetDamage(class AActor* Actor);
 
-protected:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category = "Setup")
 	class UDamageComponent* DamageComponent;
 public:	
