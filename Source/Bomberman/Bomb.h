@@ -12,6 +12,8 @@ class BOMBERMAN_API ABomb : public AActor
 	GENERATED_BODY()
 	
 public:	
+	const float TILE_LENGTH = 90;
+	
 	// Sets default values for this actor's properties
 	ABomb();
 
@@ -25,6 +27,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	float ExplosionRadius;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	int32 ScopeTiles;
 
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite,Category = "Setup")
 	class UStaticMeshComponent* BombMesh;
@@ -53,4 +58,7 @@ public:
 
 	void SetExplosionRadius(float NewExplosionRadius);
 	void SetTimeToExplosion(float NewTimeToExplosion);
+	
+	UFUNCTION(BlueprintCallable)
+	void SetScopeTiles(int32 NewScopeTiles) { ScopeTiles = NewScopeTiles; }
 };

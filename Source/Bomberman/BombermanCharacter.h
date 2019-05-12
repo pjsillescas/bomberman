@@ -12,6 +12,9 @@ class ABombermanCharacter : public ACharacter
 	GENERATED_BODY()
 
 	const int32 DEFAULT_MAXBOMBS = 1;
+
+	const int32 MAX_SCOPE = 5;
+
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
@@ -42,6 +45,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
 	int32 CurrentBombs;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 DefaultScope;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 MaxScope;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 CurrentScope;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Damage")
 	class UDamageComponent* DamageComponent;
 
@@ -50,6 +62,9 @@ public:
 
 	UFUNCTION(BlueprintCallable,Category = "Status")
 	void IncreaseMaxBombs();
+
+	UFUNCTION(BlueprintCallable, Category = "Damage")
+	void AddScope();
 
 protected:
 	void BeginPlay() override;

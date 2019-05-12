@@ -58,6 +58,7 @@ void UPickupSpawnerComponent::TrySpawn()
 		if (ChosenPickupToSpawn >= PickupSpawnConfig.Num())
 			ChosenPickupToSpawn = PickupSpawnConfig.Num() - 1;
 
+		UE_LOG(LogTemp, Warning, TEXT("Spawning pickup %i"), ChosenPickupToSpawn);
 		GetWorld()->SpawnActor<AActor>(PickupSpawnConfig[ChosenPickupToSpawn].PickupClass, GetOwner()->GetActorTransform(), FActorSpawnParameters());
 	}
 }

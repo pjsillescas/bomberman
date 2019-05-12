@@ -10,11 +10,6 @@
 #include "DamageComponent.h"
 #include "BombermanCharacter.h"
 
-AArcadeBomb::AArcadeBomb()
-{
-	ScopeTiles = 1;
-}
-
 void AArcadeBomb::Explode()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Bomb destroyed!!"));

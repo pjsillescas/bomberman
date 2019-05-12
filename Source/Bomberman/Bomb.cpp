@@ -18,6 +18,7 @@ ABomb::ABomb()
 	TimeToExplosion = 5;
 	ExplosionRadius = 40;
 	DamageBase = 20;
+	ScopeTiles = 1;
 
 	BombMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("BombMesh"));
 	SetRootComponent(BombMesh);
@@ -77,13 +78,13 @@ void ABomb::Explode()
 
 	for (auto Actor : OutActors)
 	{
-		UDamageComponent* DamageComponent = Cast<UDamageComponent>(Actor->GetComponentByClass(UDamageComponent::StaticClass()));
+		UDamageComponent* LocalDamageComponent = Cast<UDamageComponent>(Actor->GetComponentByClass(UDamageComponent::StaticClass()));
 
-		if (DamageComponent != nullptr && Actor != this)
+		if (LocalDamageComponent != nullptr && Actor != this)
 		{
 			float Damage = GetDamage(Actor);
 			UE_LOG(LogTemp, Warning, TEXT("Actor %s bombed with a damage of %f!!"), *(Actor->GetName()),Damage);
-			DamageComponent->ApplyDamage(Damage);
+			LocalDamageComponent->ApplyDamage(Damage);
 		}
 	}
 

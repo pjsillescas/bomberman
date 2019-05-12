@@ -52,6 +52,9 @@ ABombermanCharacter::ABombermanCharacter()
 	DamageComponent = CreateDefaultSubobject<UDamageComponent>(FName("DamageComponent"));
 
 	DefaultMaxBombs = DEFAULT_MAXBOMBS;
+	DefaultScope = 1;
+	CurrentScope = DefaultScope;
+	MaxScope = MAX_SCOPE;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -152,6 +155,7 @@ void ABombermanCharacter::PlaceBomb()
 		FActorSpawnParameters SpawnParameters;
 		ABomb* Bomb = GetWorld()->SpawnActor<ABomb>(BombClass, GetActorLocation() + 50 * GetActorTransform().GetRotation().GetForwardVector(), GetActorRotation(), SpawnParameters);
 		Bomb->SetBombermanOwner(this);
+		Bomb->SetScopeTiles(CurrentScope);
 		CurrentBombs--;
 	}
 }
@@ -165,6 +169,12 @@ void ABombermanCharacter::IncreaseMaxBombs()
 {
 	MaxBombs++;
 	CurrentBombs++;
+}
+
+void ABombermanCharacter::AddScope()
+{
+	CurrentScope = FMath::Clamp<int32>(CurrentScope + 1, 0, MaxScope);
+	UE_LOG(LogTemp, Warning, TEXT("Current scope %i"), CurrentScope);
 }
 
 
